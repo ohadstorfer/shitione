@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="libary"></div>
+    <button onclick="firstBook()">first</button>
+    <button onclick="nextBook()">next</button>
+    <button onclick="prevBook()">Prev</button>
+    <button onclick="lastBook()">last</button><br>
+    <hr>
+    <button onclick="addname()">add</button>
+    <button onclick="deleteBook()">delete</button>
+    <button onclick="updBook()">upd</button><br>
+    <input id="added" type="text">
+
+    <script>
+        const MY_SEREVR = "http://localhost:3000/books"
+        let index = 0
+        let books = []
+
+
+
+
+
+
+        //base function
+        function updatelibary() {
+            if (books.length === 0) {
+                libary.innerHTML = "No students available";
+                return;
+            }
+            libary.innerHTML = books[index % books.length].bookName + " " + books[index % books.length].Author + " " + books[index % books.length].category;
+        }
+
+        //show the next book on the array 
+        function nextBook() {
+            index++
+            updatelibary()
+        }
+
+       
+        async function getData() {
+            books = await fetch(MY_SEREVR).then(r => r.json())
+            updatelibary()
+        }
+
+
+     
+        function addname() {
+           let amam = document.getElementById('added').value;
+            fetch('http://localhost:3000/books', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ bookName: amam }),
+            })
+            .then(response => response.json())
+            .then(() => {
+                updatelibary();
+                
+            })
+            
+            
+            
+            
+        }
+      
+        getData()
+        
+
+
+        
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

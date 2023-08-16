@@ -1,0 +1,20 @@
+function addname() {
+    let t = document.getElementById('added').value;
+    fetch('http://localhost:3000/books', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bookName: t }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(() => {
+        updatelibary();
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+    });
+}

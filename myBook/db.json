@@ -1,0 +1,24 @@
+{
+  "books":[
+    {
+      "bookName": "MACCABI",
+      "Author": "John",
+      "category": "Sport"
+    },
+    {
+      "bookName": "theLion",
+      "Author": "Dor",
+      "category": "Animals"
+    },
+    {
+      "bookName": "computers",
+      "Author": "Eyal",
+      "category": "HiTech"
+    },
+    {
+      "bookName": "fantasyRealm",
+      "Author": "Alicia",
+      "category": "Fantasy"
+    }
+  ]
+}
